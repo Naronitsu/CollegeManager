@@ -24,8 +24,11 @@ Route::get('/colleges/{id}/edit', [CollegeController::class, 'edit'])->name('col
 //stores contents of edit college
 Route::put('colleges/{id}', [CollegeController::class, 'update'])->name('colleges.update');
 
-//stores contents of edit college
+//shows contents of college
 Route::get('colleges/{id}', [CollegeController::class, 'show'])->name('colleges.show');
+
+//delete college by id
+Route::delete('colleges/{id}', [CollegeController::class, 'destroy'])->name('colleges.destroy');
 
 //list all students
 Route::get('/students', [StudentController::class, 'index'])->name('students.index');
