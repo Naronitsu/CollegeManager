@@ -21,32 +21,44 @@ class CollegeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:colleges',
-            'address' => 'required',
+            'name' => 'required|unique:colleges,name|max:255',
+            'address' => 'required|max:255',
         ]);
 
-        College::create($request->all());
+        College::create([
+            'name' => $request->name,
+            'address' => $request->address,
+        ]);
+
         return redirect()->route('colleges.index')->with('success', 'College added successfully!');
     }
 
-    public function edit(College $college)
+    public function edit($id)
     {
+        $college = College::findOrFail($id);
         return view('colleges.edit', compact('college'));
     }
 
-    public function update(Request $request, College $college)
+    public function update(Request $request, $id)
     {
+        $college = College::findOrFail($id);
+
         $request->validate([
-            'name' => 'required|unique:colleges,name,' . $college->id,
+            'name' => 'required|unique:colleges,name,' . $id,
             'address' => 'required',
         ]);
 
-        $college->update($request->all());
+        $college->update([
+            'name' => $request->name,
+            'address' => $request->address,
+        ]);
+
         return redirect()->route('colleges.index')->with('success', 'College updated successfully!');
     }
 
-    public function destroy(College $college)
+    public function destroy($id)
     {
+        $college = College::findOrFail($id);
         $college->delete();
         return redirect()->route('colleges.index')->with('success', 'College deleted successfully!');
     }

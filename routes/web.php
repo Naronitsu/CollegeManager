@@ -24,6 +24,9 @@ Route::get('/colleges/{id}/edit', [CollegeController::class, 'edit'])->name('col
 //stores contents of edit college
 Route::put('colleges/{id}', [CollegeController::class, 'update'])->name('colleges.update');
 
+//stores contents of edit college
+Route::get('colleges/{id}', [CollegeController::class, 'show'])->name('colleges.show');
+
 //list all students
 Route::get('/students', [StudentController::class, 'index'])->name('students.index');
 
