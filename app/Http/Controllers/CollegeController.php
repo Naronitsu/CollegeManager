@@ -15,7 +15,8 @@ class CollegeController extends Controller
 
     public function create()
     {
-        return view('colleges.create');
+        $college = new College();
+        return view('colleges.create', compact('college'));
     }
 
     public function store(Request $request)

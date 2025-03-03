@@ -42,29 +42,37 @@ class StudentController extends Controller
         return redirect()->route('students.index')->with('success', 'Student added successfully!');
     }
 
-    public function edit(Student $student)
-    {
-        $colleges = College::all();
-        return view('students.edit', compact('student', 'colleges'));
-    }
+    public function edit($id)
+{
+    $student = Student::findOrFail($id);
+    $colleges = College::all();
+    
+    return view('students.edit', compact('student', 'colleges'));
+}
 
-    public function update(Request $request, Student $student)
+    public function update(Request $request, $id)
     {
+        $student = Student::findOrFail($id);
+
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:students,email,' . $student->id,
-            'phone' => 'required|regex:/^[0-9]{8}$/',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:students,email,' . $id,
+            'phone' => 'required|string|max:15',
             'dob' => 'required|date',
             'college_id' => 'required|exists:colleges,id',
         ]);
 
         $student->update($request->all());
+
         return redirect()->route('students.index')->with('success', 'Student updated successfully!');
     }
 
-    public function destroy(Student $student)
-    {
-        $student->delete();
-        return redirect()->route('students.index')->with('success', 'Student deleted successfully!');
-    }
+    public function destroy($id)
+{
+    $student = Student::findOrFail($id); 
+    $student->delete(); 
+
+    return redirect()->route('students.index')->with('success', 'Student deleted successfully!');
+}
+
 }
