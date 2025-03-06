@@ -28,6 +28,13 @@ class StudentController extends Controller
         return view('students.create', compact('colleges'));
     }
 
+        public function show($id)
+    {
+        $student = Student::with('college')->findOrFail($id);
+        return view('students.show', compact('student'));
+    }
+
+
     public function store(Request $request)
     {
         $request->validate([

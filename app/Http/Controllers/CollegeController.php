@@ -13,6 +13,13 @@ class CollegeController extends Controller
         return view('colleges.index', compact('colleges'));
     }
 
+    public function show($id)
+    {
+        $college = College::with('students')->findOrFail($id);
+        return view('colleges.show', compact('college'));
+    }
+
+
     public function create()
     {
         $college = new College();

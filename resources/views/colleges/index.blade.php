@@ -9,7 +9,7 @@
                 <div class="card-header card-title">
                   <div class="d-flex align-items-center">
                     <h2 class="mb-0">All Colleges</h2>
-                    <div class="ml-auto">
+                    <div class="ms-auto">
                       <a href="{{ route('colleges.create') }}" class="btn btn-success"><i class="fa fa-plus-circle"></i> Add New</a>
                     </div>
                   </div>
@@ -31,7 +31,11 @@
                           <th scope="row">{{ $index + 1 }}</th>
                           <td>{{ $college->name }}</td>
                           <td>{{ $college->address }}</td>
-                          <td width="200">
+                          <td width="250">
+                          <a href="{{ route('colleges.show', $college->id) }}" class="btn btn-sm btn-outline-info" title="View">
+                              <i class="fa fa-eye"></i>
+                            </a>
+
                             <a href="{{ route('colleges.edit', $college->id) }}" class="btn btn-sm btn-outline-secondary" title="Edit">
                               <i class="fa fa-edit"></i>
                             </a>
