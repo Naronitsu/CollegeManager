@@ -33,7 +33,12 @@
                   <thead>
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">Name</th>
+                      <!-- Make the Name header clickable for sorting -->
+                      <th scope="col">
+                      <a href="{{ route('students.index', array_merge(request()->query(), ['sort' => request()->query('sort') === 'name' ? null : 'name'])) }}">
+                          Name
+                      </a>
+                      </th>
                       <th scope="col">Email</th>
                       <th scope="col">Phone</th>
                       <th scope="col">Date of Birth</th>

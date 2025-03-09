@@ -11,16 +11,29 @@ class StudentController extends Controller
     public function index(Request $request)
     {
         $query = Student::query();
-
+    
+        // Apply college filter if it's set
         if ($request->has('college_id') && $request->college_id) {
             $query->where('college_id', $request->college_id);
         }
-
-        $students = $query->orderBy('name')->get();
+    
+        // Check if the sort parameter is set to 'name' and apply sorting
+        if ($request->has('sort') && $request->sort === 'name') {
+            // If sorting by name is clicked again, remove sorting (reset to default)
+            $direction = $request->get('direction', 'asc');
+            $query->orderBy('name', $direction);
+        } else {
+            // Default order (no sorting, or reset sorting)
+            $query->orderBy('created_at', 'desc'); // Or any default field
+        }
+    
+        // Get the students and colleges
+        $students = $query->get();
         $colleges = College::all();
-
+    
         return view('students.index', compact('students', 'colleges'));
-    }
+    }    
+
 
     public function create()
     {
