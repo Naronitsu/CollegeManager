@@ -7,10 +7,10 @@
           <div class="col-md-8">
             <div class="card">
               <div class="card-header card-title">
-                <strong>Add New Contact</strong>
+                <strong>Add New College</strong>
               </div>
               <div class="card-body">
-                <form action="{{ route('students.store') }}" method="POST">
+                <form action="{{ route('colleges.store') }}" method="POST">
                   @csrf
                   @include('colleges._form')
                 </form>

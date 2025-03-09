@@ -6,7 +6,7 @@
           <label for="name" class="form-label">College Name</label>
           <input type="text" name="name" id="name" 
                  class="form-control @error('name') is-invalid @enderror" 
-                 value="{{ old('name') }}" required>
+                 value="{{ old('name') }}">
           @error('name')
             <div class="invalid-feedback">{{ $message }}</div>
           @enderror
@@ -16,7 +16,7 @@
           <label for="address" class="form-label">Address</label>
           <input type="text" name="address" id="address" 
                  class="form-control @error('address') is-invalid @enderror" 
-                 value="{{ old('address') }}" required>
+                 value="{{ old('address') }}">
           @error('address')
             <div class="invalid-feedback">{{ $message }}</div>
           @enderror
