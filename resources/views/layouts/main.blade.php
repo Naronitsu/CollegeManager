@@ -28,7 +28,7 @@
         <div class="collapse navbar-collapse" id="navbar-toggler">
           <ul class="navbar-nav">
             <li class="nav-item"><a href="/colleges" class="nav-link">Colleges</a></li>
-            <li class="nav-item active"><a href="/students" class="nav-link">Students</a></li>
+            <li class="nav-item"><a href="/students" class="nav-link">Students</a></li>
           </ul>
         </div>
       </div>

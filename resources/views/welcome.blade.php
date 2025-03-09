@@ -1,18 +1,18 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.main')
 
-        <title>Laravel</title>
+@section('content')
+<div class="container text-center py-5">
+    <h1 class="mb-4">Welcome to the Student & College Management System</h1>
+    <p class="lead">Manage students and colleges easily.</p>
+    
+    <div class="d-flex justify-content-center gap-3">
+        <a href="{{ route('students.index') }}" class="btn btn-primary btn-lg">View Students</a>
+        <a href="{{ route('colleges.index') }}" class="btn btn-primary btn-lg">View Colleges</a>
+    </div>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-    </head>
-    <body class="antialiased">
-        <div>
-                <a href="{{route('colleges.index') }}">All Colleges</a>
-        </div>
-    </body>
-</html>
+    <div class="mt-4">
+        <a href="{{ route('students.create') }}" class="btn btn-outline-primary">Add Student</a>
+        <a href="{{ route('colleges.create') }}" class="btn btn-outline-primary">Add College</a>
+    </div>
+</div>
+@endsection

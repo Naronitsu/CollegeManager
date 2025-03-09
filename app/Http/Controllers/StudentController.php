@@ -40,7 +40,7 @@ class StudentController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:students',
-            'phone' => 'required|regex:/^[0-9]{8}$/',
+            'phone' => ['required', 'regex:/^(79|77|21)\d{6}$|^2\d{7}$/'], 
             'dob' => 'required|date',
             'college_id' => 'required|exists:colleges,id',
         ]);
@@ -64,7 +64,7 @@ class StudentController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:students,email,' . $id,
-            'phone' => 'required|string|max:15',
+            'phone' =>  ['required', 'regex:/^(79|77|21)\d{6}$|^2\d{7}$/'],
             'dob' => 'required|date',
             'college_id' => 'required|exists:colleges,id',
         ]);

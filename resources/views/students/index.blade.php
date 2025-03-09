@@ -9,7 +9,19 @@
                 <div class="card-header card-title">
                   <div class="d-flex align-items-center">
                     <h2 class="mb-0">All Students</h2>
-                    <div class="ms-auto">
+                    <div class="ms-auto d-flex">
+                      <!-- College Filter Dropdown -->
+                      <form method="GET" action="{{ route('students.index') }}" class="me-2">
+                        <select name="college_id" class="form-select" onchange="this.form.submit()">
+                            <option value="" {{ request('college_id') ? '' : 'selected' }}>All Students</option>
+                            @foreach ($colleges as $college)
+                                <option value="{{ $college->id }}" {{ request('college_id') == $college->id ? 'selected' : '' }}>
+                                    {{ $college->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </form>
+                      <!-- Add New Student Button -->
                       <a href="{{ route('students.create') }}" class="btn btn-success">
                         <i class="fa fa-plus-circle"></i> Add New
                       </a>
